@@ -1,0 +1,13 @@
+digraph "Autómato finito determinístico que aceita sequências binárias que terminem em 0." {
+	graph [rankdir=LR]
+	node [shape=circle]
+	edge [arrowhead=vee arrowsize=1]
+	Start [label="" shape=none]
+	A
+	B [shape=doublecircle]
+	Start -> A
+	A -> B [label=0]
+	A -> A [label=1]
+	B -> B [label=0]
+	B -> A [label=1]
+}

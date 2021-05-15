@@ -1,0 +1,19 @@
+digraph "Autómato que aceita sequências binárias que têm um número de 0's múltiplo de 3." {
+	graph [rankdir=LR]
+	node [shape=circle]
+	edge [arrowhead=vee arrowsize=1]
+	Start [label="" shape=none]
+	A
+	B
+	C
+	D [shape=doublecircle]
+	Start -> A
+	A -> B [label=0]
+	A -> A [label=1]
+	B -> C [label=0]
+	B -> B [label=1]
+	C -> D [label=0]
+	C -> C [label=1]
+	D -> B [label=0]
+	D -> D [label=1]
+}

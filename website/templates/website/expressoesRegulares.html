@@ -1,0 +1,49 @@
+{% extends 'website/layout.html' %}
+
+{% block main %}
+
+<main class="col-sm-12 text-center">
+    <h3>Expressões Regulares (ER)</h3>
+    <a href="{% url 'website:novoExpressao' %}" class="container btn btn-success btn-sm btn-block" style="max-width:900px">
+        Crie uma ER
+    </a>
+    <br>
+    <p>Apresentam-se em baixo expressões que foram criadas.</p>
+    <table align="center" class="table" style="max-width:900px">
+        <tr>
+            <th class="text-center">Expressão</th>
+            <th class="text-center">Descrição</th>
+        </tr>
+        {% load static %}
+        {% for expressao in expressoesRegulares %}
+            <tr class="text-left">
+                <td>
+                    <a href="{% url 'website:detalhesExpressao' maquina.id %}">
+                    </a>
+                </td>
+                <td style="vertical-align:bottom">
+                    <p>{{ expressao.descricao }}</p>
+                    <p>
+                        <a href="{% url 'website:detalhesExpressao' expressao.id %}" class="btn btn-info btn-sm">
+                            Detalhes
+                        </a>
+                        <a href="{% url 'website:detalhesExpressao' expressao.id %}" class="btn btn-success btn-sm">
+                            Validar Sequência
+                        </a>
+                        <a href="{% url 'website:editarExpressao' expressao.id %}" class="btn btn-warning btn-sm">
+                            Editar ER
+                        </a>
+                        <a href="{% url 'website:apagarExpressao' expressao.id %}" class="btn btn-danger btn-sm">
+                            Apagar ER
+                        </a>
+                    </p>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</main>
+
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
