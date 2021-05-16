@@ -1,0 +1,19 @@
+{% extends 'website/layout.html' %}
+
+{% block main %}
+
+<main class="col-12 col-md-8  mx-auto">
+    <h3>Máquinas de Turing</h3>
+    <p>Pode aqui especificar uma nova máquina que ficará armazenada na base de dados, juntamente com o seu diagrama.
+        A máquina será implementada e poderá ser usada.</p>
+
+    <form class="form-group" action="{% url 'website:novoMaquina' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-right">
+            <a href="{% url 'website:maquinasTuring' %}" role="button" class="btn btn-warning">Cancelar</a>
+            <input type="submit" class="btn btn-success" value="submeter">
+        </div>
+    </form>
+</main>
+{% endblock %}

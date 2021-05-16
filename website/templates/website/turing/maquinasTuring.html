@@ -1,0 +1,55 @@
+{% extends 'website/layout.html' %}
+
+{% block main %}
+
+<main class="col-12 text-center">
+    <h3>Máquinas Turing</h3>
+    <a href="{% url 'website:novoMaquina' %}" >
+    </a>
+    <br>
+    <p>Apresentam-se em baixo autómatos que foram criados.</p>
+
+    <button class="btn btn-success btn-md mx-auto"><b>+</b> Crie uma máquina</button> 
+
+
+        {% load static %}
+            {% for maquina in maquinasTuring %}
+            <hr>
+            <h3 class="m-5">Autômato: {{ maquina.nome }}</h3>
+            <div class="row ">
+                <div class="col-12 col-md-6 text-left text-md-right">
+                    <h4>Diagrama de Estados</h4>
+                    <a href="{% url 'website:validarMaquina' maquina.id %}">
+                        <img  src="{% static maquina.diagrama %}" alt="" width="320px">
+                    </a>
+                </div>
+
+                <div class="col-12 col-md-4 text-left">
+                    <h4>Descrição</h4>
+                    <p>{{ maquina.descricao }}</p>
+                    <div class="d-flex flex-column flex-md-row  mx-auto">
+                        <a href="{% url 'website:validarMaquina' maquina.id %}" class="btn btn-success btn-sm my-1 mx-1">
+                            Validar Sequência
+                        </a>
+                        <a href="{% url 'website:editarMaquina' maquina.id %}" class="btn btn-warning btn-sm my-1 mx-1">
+                            Editar Máquina
+                        </a>
+                        <a href="{% url 'website:apagarMaquina' maquina.id %}" class="btn btn-danger btn-sm my-1 mx-1">
+                            Apagar Máquina
+                        </a>
+                    </div>
+                   
+               
+                </div>
+            </div>
+               
+            {% endfor %}
+        </div>
+       
+
+</main>
+
+{% endblock %}
+
+{% block aside %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'website/layout.html' %}
+
+{% block main %}
+
+<main class="col-12 col-md-8 mx-auto">
+
+    <h3>{{ expressao.nome|title }}</h3>
+    <p>{{ expressao.descricao }}.</p>
+    <table align="center">
+        <tr align="left">
+                <p><b>Regex da expressão:</b></p>
+                <li>Regex: {{ expressao.printRegex }} </li> 
+        </tr>
+    </table> 
+    
+    <br>
+    <p><b>Validador:</b> Insira uma sequência e verifique se pertence à linguagem que a ER reconhece: </p>
+   <form action="{% url 'website:validarExpressao' expressao.id %}" method="POST">
+        {% csrf_token %}
+        <b>{{ form }}</b>
+        <input type="submit" value="validar" class="btn btn-success">
+    </form>
+    {% if resultado != None %}
+        {% if resultado == True %}
+            <p>A sequência <b>{{ sequencia }}</b> é aceite pela expressão </p>
+        {% else %}
+            <p>A sequência <b>{{ sequencia }}</b> não é aceite pela expressão </p>
+        {% endif %}
+    {% else %}
+        <br><br>
+    {% endif %}
+</main>
+
+{% endblock %}

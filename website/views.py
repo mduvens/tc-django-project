@@ -8,7 +8,7 @@ from .forms import SequenciaForm, AutomatoForm, MaquinaForm, ExpressaoForm
 def index(request):
     return render(request, 'website/index.html')
 
-def detalhesAutomato(request, automato_id):
+def validarAutomato(request, automato_id):
 
     sequencia = None
     resultado = None
@@ -24,12 +24,12 @@ def detalhesAutomato(request, automato_id):
         'resultado': resultado,
         'form': form,
     }
-    return render(request, 'website/detalhesAutomato.html', context)
+    return render(request, 'website/automato/validarAutomato.html', context)
 
 def automatosFinitos(request):
 
     context = {'automatosFinitos': Automato.objects.all()}
-    return render(request, 'website/automatosFinitos.html', context)
+    return render(request, 'website/automato/automatosFinitos.html', context)
 
 def novoAutomato(request):
 
@@ -41,7 +41,7 @@ def novoAutomato(request):
         return HttpResponseRedirect(reverse('website:automatosFinitos'))
     
     context = {'form': form}
-    return render(request, 'website/novoAutomato.html', context)
+    return render(request, 'website/automato/novoAutomato.html', context)
 
 
 def editarAutomato(request, automato_id):
@@ -54,15 +54,14 @@ def editarAutomato(request, automato_id):
         return HttpResponseRedirect(reverse('website:automatosFinitos'))
 
     context = {'form': form, 'automato_id':automato_id}
-    return render(request, 'website/editarAutomato.html', context)
+    return render(request, 'website/automato/editarAutomato.html', context)
 
 def apagarAutomato(request, automato_id):
     Automato.objects.filter(id=automato_id).delete()
     context = {'automasFinitos': Automato.objects.all()}
-    return render(request, 'website/automatosFinitos.html', context)
+    return render(request, 'website/automato/automatosFinitos.html', context)
 
-def detalhesMaquina(request, maquina_id):
-
+def validarMaquina(request, maquina_id):
     sequencia = None
     resultado = None
 
@@ -77,12 +76,11 @@ def detalhesMaquina(request, maquina_id):
         'resultado': resultado,
         'form': form,
     }
-    return render(request, 'website/detalhesMaquina.html', context)
+    return render(request, 'website/turing/validarMaquina.html', context)
 
 def maquinasTuring(request):
-
     context = {'maquinasTuring': Maquina.objects.all()}
-    return render(request, 'website/maquinasTuring.html', context)
+    return render(request, 'website/turing/maquinasTuring.html', context)
 
 def novoMaquina(request):
 
@@ -90,16 +88,17 @@ def novoMaquina(request):
     if form.is_valid():
         novoMaquina = form.save()
         novoMaquina.desenhaDiagrama()
-        novoMaquina.save()
+        novoMaquina.save(force_update=True)
         return HttpResponseRedirect(reverse('website:maquinasTuring'))
     
     context = {'form': form}
-    return render(request, 'website/novoMaquina.html', context)
+    return render(request, 'website/turing/novoMaquina.html', context)
 
 
 def editarMaquina(request, maquina_id):
     instance = Maquina.objects.get(id=maquina_id)
     form = MaquinaForm(request.POST or None, instance=instance)
+
     if form.is_valid():
         m = form.save()
         m.desenhaDiagrama()
@@ -107,14 +106,14 @@ def editarMaquina(request, maquina_id):
         return HttpResponseRedirect(reverse('website:maquinasTuring'))
 
     context = {'form': form, 'maquina_id':maquina_id}
-    return render(request, 'website/editarMaquina.html', context)
+    return render(request, 'website/turing/editarMaquina.html', context)
 
 def apagarMaquina(request, maquina_id):
     Maquina.objects.filter(id=maquina_id).delete()
     context = {'maquinasTuring': Maquina.objects.all()}
-    return render(request, 'website/maquinasTuring.html', context)
+    return render(request, 'website/turing/maquinasTuring.html', context)
 
-def detalhesExpressao(request, expressao_id):
+def validarExpressao(request, expressao_id):
 
     sequencia = None
     resultado = None
@@ -130,12 +129,11 @@ def detalhesExpressao(request, expressao_id):
         'resultado': resultado,
         'form': form,
     }
-    return render(request, 'website/detalhesExpressao.html', context)
+    return render(request, 'website/regex/validarExpressao.html', context)
 
 def expressoesRegulares(request):
-
     context = {'expressoesRegulares': Expressao.objects.all()}
-    return render(request, 'website/expressoesRegulares.html', context)
+    return render(request, 'website/regex/expressoesRegulares.html', context)
 
 def novoExpressao(request):
 
@@ -146,7 +144,7 @@ def novoExpressao(request):
         return HttpResponseRedirect(reverse('website:expressoesRegulares'))
     
     context = {'form': form}
-    return render(request, 'website/novoExpressao.html', context)
+    return render(request, 'website/regex/novoExpressao.html', context)
 
 
 def editarExpressao(request, expressao_id):
@@ -158,9 +156,9 @@ def editarExpressao(request, expressao_id):
         return HttpResponseRedirect(reverse('website:expressoesRegulares'))
 
     context = {'form': form, 'expressao_id':expressao_id}
-    return render(request, 'website/editarExpressao.html', context)
+    return render(request, 'website/regex/editarExpressao.html', context)
 
 def apagarExpressao(request, expressao_id):
     Expressao.objects.filter(id=expressao_id).delete()
     context = {'expressoesRegulares': Expressao.objects.all()}
-    return render(request, 'website/expressoesRegulares.html', context)
+    return render(request, 'website/regex/expressoesRegulares.html', context)

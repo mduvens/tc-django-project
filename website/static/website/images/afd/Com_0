@@ -1,4 +1,4 @@
-digraph "Autómato finito determinístico que aceita sequências binárias que tenham pelo menos um 0." {
+digraph "Autómato finito determinístico que aceita sequências binárias que tenham pelo menos um 0..." {
 	graph [rankdir=LR]
 	node [shape=circle]
 	edge [arrowhead=vee arrowsize=1]

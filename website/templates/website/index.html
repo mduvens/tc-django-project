@@ -1,20 +1,83 @@
 {% extends 'website/layout.html' %}
 
 {% block main %}
-<img src="/static/website/images/img/tcicon.png" class="img-fluid" alt="Responsive image">
+<h1 class="display-4">Teoria da Computação 2021</h1>
 <div class="row">
-    <div class="col-6 mx-auto">
-        <div class="text-center">
-            Este website foi criado no âmbito da cadeira "Teorida da Computação". Este projeto dá a possibilidade ao utilizador
-            de usar ferramentas para o estudo e observação de autómatos finitos, máquinas de turing e expressões regulares.
+
+    <div class="col-11 col-md-10 col-lg-8 mx-auto text-left " id="main-grid">
+        <hr>
+            <a href="{% url 'website:automatosFinitos' %}">
+                <h2 class="display-4">Autómatos</h2>
+            </a>
+            <p>Um Autómato Finito Determinístico <b>AFD</b> é um dispositivo que reconhece uma
+                linguagem, realizando a validação de uma sequência de símbolos que pertençam a essa linguagem - o
+                <b>alfabeto</b>. Tem um conjunto finito de <b>estados</b> com
+                os quais efectua as validações e define o "flow do programa", através da
+                <b>tabela de transição</b>. Ao receber cada símbolo de entrada, o dispositivo verifica qual o estado
+                resultante, dependendo do estado actual e do símbolo inserido. A validação ocorrre quando
+                o <b>estado final</b> for igual ao <b>estado de aceitação</b>. Na essência, é uma máquina ou robô que se
+                opera de maneira automática.
+                Tem uma memória finita e uma fita de entrada.
+            </p>
+            <p>Um AFD é então definido por 5 conjuntos | <b>Quíntuplo</b> </p>
+            <ol>
+                <li><b>Alfabeto</b></li>
+                <li><b>Estados</b></li>
+                <li><b>Estado Final</b></li>
+                <li><b>Estado Inicial</b></li>
+                <li><b>Estados de Aceitação</b></li>
+            </ol>
+            <div class="text-center mx-auto" style="max-width: 400px;">
+
+            <a  href="{% url 'website:automatosFinitos' %}"><button class="btn btn-md btn-success btn-block">Experimenta</button></a>
         </div>
-        <br>
-        <blockquote class="blockquote">
-            <p class="mb-0">Uma máquina pode fazer o trabalho de cinquenta homens comuns. Nenhuma máquina pode fazer o
-                trabalho de um
-                homem extraordinário.</p>
-            <footer class="blockquote-footer">Elbert Hubbard</footer>
-        </blockquote>
+        <hr>
+        <a href="{% url 'website:maquinasTuring' %}">
+            <h2>Máquinas Turing</h2>
+        </a>
+        <p>
+            A Máquina de Turing é um dispositivo teórico conhecido como <b>máquina universal</b>, que foi concebido pelo
+            matemático britânico <b>Alan Turing (1912-1954),</b> muitos anos antes de existirem os modernos computadores
+            digitais. Num sentido preciso, é um <b>modelo abstrato de um
+            computador</b>, que se restringe apenas aos aspectos lógicos do seu funcionamento (memória, estados e
+            transições), e não a sua implementação física. Numa máquina de Turing <b>pode-se modelar qualquer computador
+            digital.</b>
+        </p>
+        <p>Uma máquina de Turing é então definida por 7 conjuntos </p>
+        <ol>
+            <li><b>Alfabeto</b></li>
+            <li><b>Alfabeto da fita </b></li>
+            <li><b>Estados</b></li>
+            <li><b>Estado Inicial</b></li>
+            <li><b>Estado Aceitação</b></li>
+            <li><b>Estado de Rejeição</b></li>
+            <li><b>Tabela de Transições</b></li>
+        </ol>
+        <div class="text-center mx-auto" style="max-width: 400px;">
+
+            <a href="{% url 'website:maquinasTuring' %}"><button class="btn btn-md btn-success btn-block">Experimenta</button></a>
+        </div>
+        <hr>
+        <a href="{% url 'website:expressoesRegulares' %}">
+            <h2>Expressoes Regulares</h2>
+        </a>
+        <p>Uma Expressão Regular <b>ER</b>, também conhecidas por <b>RegEx</b> (embora não sejam exatamente a mesma
+            coisa), é uma sequência de caracteres que define um padrão de pesquisa. Geralmente, esses
+            padrões são usados ​​por algoritmos de pesquisa em strings, para efectuar operações tais como:
+            <b>Validação</b> de
+            strings, <b>Localização</b> de substrings, ou até mesmo <b>Substituição</b> de uma (sub)string por outra.
+            Para construir <b>ER</b>s, são usados dois tipos de caracteres:
+            <ul>
+                <li><b>Literais:</b> os caracteres presentes nas strings. <br> <b>-</b> Letras, dígitos, caracteres
+                    especiais </li><br>
+                <li><b>Metacaracteres:</b> os caracteres especialmente interpretados por um motor <b>RegEx</b>.
+                    <br><b>-</b> $ \ ^ . [ ] { } ? +</li>
+            </ul>
+        </p>
+        <div class="text-center mx-auto" style="max-width: 400px;">
+            <a href="{% url 'website:expressoesRegulares' %}"><button class="btn btn-md btn-success btn-block ">Experimenta</button></a>
+        </div>
+
     </div>
 </div>
 {% endblock %}

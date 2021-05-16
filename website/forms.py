@@ -18,7 +18,7 @@ class AutomatoForm(ModelForm):
 
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'AFD que aceita sequências...'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
             'alfabeto': forms.TextInput(attrs={'class': 'form-control'}),
             'estados': forms.TextInput(attrs={'class': 'form-control'}),
             'estadoInicial': forms.TextInput(attrs={'class': 'form-control'}),
@@ -27,16 +27,6 @@ class AutomatoForm(ModelForm):
         }
 
         labels = {
-            'nome': 'Nome do autómato',
-            'descricao': 'Descrição',
-            'alfabeto': 'Alfabeto de símbolos',
-            'estados': 'Estados',
-            'estadoInicial': 'Estado inicial',
-            'estadosDeAceitacao': 'Estado de aceitação',
-            'dicionarioTransicao': 'Transições'
-        }
-
-        placeholders = {
             'nome': 'Nome do autómato',
             'descricao': 'Descrição',
             'alfabeto': 'Alfabeto de símbolos',
@@ -63,7 +53,7 @@ class MaquinaForm(ModelForm):
 
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'MT que aceita sequências...'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
             'alfabeto': forms.TextInput(attrs={'class': 'form-control'}),
             'estados': forms.TextInput(attrs={'class': 'form-control'}),
             'estadoInicial': forms.TextInput(attrs={'class': 'form-control'}),
@@ -72,16 +62,6 @@ class MaquinaForm(ModelForm):
         }
 
         labels = {
-            'nome': 'Nome da máquina de turing',
-            'descricao': 'Descrição',
-            'alfabeto': 'Alfabeto de símbolos',
-            'estados': 'Estados',
-            'estadoInicial': 'Estado inicial',
-            'estadosDeAceitacao': 'Estado de aceitação',
-            'dicionarioTransicao': 'Transições'
-        }
-
-        placeholders = {
             'nome': 'Nome da máquina de turing',
             'descricao': 'Descrição',
             'alfabeto': 'Alfabeto de símbolos',
@@ -108,17 +88,11 @@ class ExpressaoForm(ModelForm):
 
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'descricao': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'ER que aceita sequências...'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
             'regex': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
         labels = {
-            'nome': 'Nome do Regex',
-            'descricao': 'Descrição',
-            'regex': 'Regex',
-        }
-
-        placeholder = {
             'nome': 'Nome do Regex',
             'descricao': 'Descrição',
             'regex': 'Regex',

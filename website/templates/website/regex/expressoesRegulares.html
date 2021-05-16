@@ -1,0 +1,46 @@
+{% extends 'website/layout.html' %}
+
+{% block main %}
+
+<main class="col-12 text-center">
+    <h3>Expressões Regulares - RegEx</h3>
+    <a href="{% url 'website:novoExpressao' %}" >
+    </a>
+    <br>
+    <p>Apresentam-se em baixo as expressões regulares que foram criadas.</p>
+    <button class="btn btn-success btn-md  mx-auto"><b>+</b> Crie um RegEx</button> 
+
+        {% load static %}
+            {% for expressao in expressoesRegulares %}
+            <hr>
+            <h3 class="mt-5 mb-2 text-primary">Verificar {{ expressao.nome }}</h3>
+            <h3 class="mb-2">Regex: {{ expressao.regex }}</h3>
+            <div class="row ">
+                <div class="col-12 col-md-4 mx-auto text-left">
+                    <h4>Descrição</h4>
+                    <p>{{ expressao.descricao }}</p>
+                    <div class="d-flex flex-column flex-md-row  mx-auto">
+                        <a href="{% url 'website:validarExpressao' expressao.id %}" class="btn btn-success btn-sm my-1 mx-1">
+                            Validar Sequência
+                        </a>
+                        <a href="{% url 'website:editarExpressao' expressao.id %}" class="btn btn-warning btn-sm my-1 mx-1">
+                            Editar Regex
+                        </a>
+                        <a href="{% url 'website:apagarExpressao' expressao.id %}" class="btn btn-danger btn-sm my-1 mx-1">
+                            Apagar Regex
+                        </a>
+                    </div>
+                   
+               
+                </div>
+            </div>
+               
+            {% endfor %}
+        </div>
+       
+
+</main>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
