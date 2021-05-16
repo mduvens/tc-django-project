@@ -16,7 +16,7 @@
                     <li>Estado inicial: {{ maquina.estadoInicial }}</li>
                     <li>Estados aceitação: {{ maquina.printEstadosDeAceitacao }}</li>
                     <li>Tabela de transições:
-                        {% comment %} <table align="center" rules="all" style="border-collapse: collapse">
+                        <table align="center" rules="all" style="border-collapse: collapse">
                             {% for dTran in maquina.dTransInTable %}
                                 <tr>
                                     {% for element in dTran %}
@@ -30,7 +30,7 @@
                                     {% endfor %}
                                 </tr>
                             {% endfor %}
-                        </table> {% endcomment %}
+                        </table> 
                     </li>
                 </ul>
             </td>
@@ -49,7 +49,6 @@
         <b>{{ form }}</b>
         <input type="submit" value="validar" class="btn btn-success">
     </form>
-
     {% if resultado != None %}
         {% if resultado == True %}
             <p>A sequência <b>{{ sequencia }}</b> é aceite pela máquina </p>

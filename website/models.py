@@ -119,7 +119,7 @@ class Maquina(models.Model):
         return str(set(self.estadosDeAceitacao.split()))
 
     def dTransInTable(self):
-        dTrans = {(t.split('-')[0], t.split('-')[1]):t.split('-')[2] for t in self.dicionarioTransicao.split()}
+        dicTransicoes = {(t.split('-')[0], t.split('-')[1]):t.split('-')[2] for t in self.dicionarioTransicao.split()}
 
         table = []
 
@@ -128,31 +128,54 @@ class Maquina(models.Model):
             linha.append(simbolo)
         table.append(linha)
 
+        linha = ["", "1", "0"]
+
+        aux = linha[1:]
         for estado in self.estados.split():
-            linha =[estado]
-            for simbolo in self.alfabeto.split():
-                linha.append(dTrans[(estado, simbolo)])
+            linha=[estado]
+            for simbolo in aux:
+                find = False
+                for dicEstado, dicSimbolo in dicTransicoes:
+                    if dicSimbolo[0] == simbolo and dicEstado == estado:
+                        linha.append("(" + dicSimbolo[1] + "," + dicSimbolo[2] + "," + dicTransicoes[(estado, dicSimbolo)] + ")")
+                        find = True
+                        break
+                if find == False:
+                    linha.append("-")
             table.append(linha)
 
         return table
-    
+
     def validaSequencia(self, sequencia):
+        fita = ["$"]*200
+        indice = 50
+        nTicks = 0
+        for e in sequencia:
+            fita[indice] = e
+            indice+=1
+        indice = 50
 
         estado = self.estadoInicial
-
-        dTrans = {(t.split('-')[0], t.split('-')[1]):t.split('-')[2] for t in self.dicionarioTransicao.split()}
-
-        for simbolo in sequencia:
-            if simbolo in self.alfabeto:
-                estado = dTrans[(estado, simbolo)]
-            else:
+ 
+        dTrans = {(t.split('-')[0], t.split('-')[1][0]):{"proxSimbolo":t.split('-')[1][1],"direcao":t.split('-')[1][2],"proxEstado":t.split('-')[2]} for t in self.dicionarioTransicao.split()}
+ 
+        while(estado != "ha" and nTicks < 15000):
+            if((estado,fita[indice]) not in dTrans): 
                 return False
-
-        if estado in self.estadosDeAceitacao:
-            return True
-        else:
-            return False
-
+            novoEstado = dTrans[estado,fita[indice]]["proxEstado"]
+            frente = False
+            if dTrans[estado,fita[indice]]["direcao"] == "R":
+                frente = True
+            novoSimbolo = dTrans[estado,fita[indice]]["proxSimbolo"]
+            fita[indice] = novoSimbolo
+            estado = novoEstado
+            if frente:
+                indice+=1
+            else: 
+                indice -= 1
+            nTicks+=1
+        return True
+        
     def desenhaDiagrama(self):
 
         d = Digraph(name=self.descricao)
@@ -183,6 +206,8 @@ class Maquina(models.Model):
             transicao = transicao_comma.split('-')
             d.edge(transicao[0], transicao[2], label=transicao[1])
 
+        
+
         d.format = 'svg'
         self.diagrama = f"website/images/mt/{str(self.nome).replace(' ', '_')}.svg"
         d.render(f"website/static/website/images/mt/{str(self.nome).replace(' ', '_')}")
@@ -196,13 +221,12 @@ class Expressao(models.Model):
         return self.descricao
         
     def printRegex(self):
-        return str(set(self.regex.split()))
+        return self.regex
 
     def validaSequencia(self, sequencia):
         
         regex = re.compile(self.regex)
-        check = re.match(regex, sequencia)
-        if check:
+        if re.match(regex, sequencia):
             return True
         else:
             return False

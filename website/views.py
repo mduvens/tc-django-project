@@ -119,7 +119,7 @@ def detalhesExpressao(request, expressao_id):
     sequencia = None
     resultado = None
 
-    form = ExpressaoForm(request.POST or None)
+    form = SequenciaForm(request.POST or None)
     if form.is_valid():
         sequencia = form.cleaned_data['sequencia']
         resultado = Expressao.objects.get(id=expressao_id).validaSequencia(sequencia)
@@ -153,8 +153,8 @@ def editarExpressao(request, expressao_id):
     instance = Expressao.objects.get(id=expressao_id)
     form = ExpressaoForm(request.POST or None, instance=instance)
     if form.is_valid():
-        e = form.save()
-        e.save()
+        m = form.save()
+        m.save()
         return HttpResponseRedirect(reverse('website:expressoesRegulares'))
 
     context = {'form': form, 'expressao_id':expressao_id}

@@ -118,7 +118,7 @@ class ExpressaoForm(ModelForm):
             'regex': 'Regex',
         }
 
-        placeholders = {
+        placeholder = {
             'nome': 'Nome do Regex',
             'descricao': 'Descrição',
             'regex': 'Regex',

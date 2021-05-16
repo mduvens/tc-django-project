@@ -3,22 +3,23 @@ digraph "Máquina de Turing que aceita sequências binárias com mais 0's que 1'
 	node [shape=circle]
 	edge [arrowhead=vee arrowsize=1]
 	Start [label="" shape=none]
-	C
-	A
 	D
+	A
 	B
+	C
 	ha [shape=doublecircle]
 	Start -> A
 	A -> A [label=XXR]
 	A -> B [label="0XR"]
 	B -> B [label="00R"]
 	B -> D [label="1XL"]
+	B -> B [label=XXR]
 	A -> C [label="1XR"]
 	C -> C [label="11R"]
 	C -> D [label="0XL"]
 	D -> D [label="00L"]
 	D -> D [label="11L"]
 	D -> D [label=XXL]
-	D -> A [label="$$L"]
+	D -> A [label="$$R"]
 	B -> ha [label="$$R"]
 }

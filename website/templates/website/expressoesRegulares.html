@@ -18,7 +18,8 @@
         {% for expressao in expressoesRegulares %}
             <tr class="text-left">
                 <td>
-                    <a href="{% url 'website:detalhesExpressao' maquina.id %}">
+                    <a href="{% url 'website:detalhesExpressao' expressao.id %}">
+                    {{expressao.printRegex}}
                     </a>
                 </td>
                 <td style="vertical-align:bottom">
